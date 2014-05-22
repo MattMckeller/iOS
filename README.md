@@ -20,5 +20,5 @@ Choosing a card, and mismatching cards results in decreasing points
 ===
 <i>CardFlipping</i>
 ===
-Summary: Displays random card to screen, on touch it flips to the back/front respectively and when its time for the front it displays a random valid card. 
+Summary:Displays random card to screen, on touch it flips to the back/front respectively and when its time for the front it displays a random valid card. 
 ===

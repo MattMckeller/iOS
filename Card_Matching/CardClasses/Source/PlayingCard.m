@@ -10,6 +10,43 @@
 
 @implementation PlayingCard
 
+-(int) match:(NSArray *)otherCards{
+    int score = 0;
+    
+    if([otherCards count] == 1){
+        PlayingCard *otherCard = (PlayingCard *)[otherCards firstObject]; //firstObject doesnt crash if array is empty
+        if (self.rank == otherCard.rank){
+            score = 4;
+        }else if( [self.suit  isEqualToString:otherCard.suit] ){
+            score = 1;
+        }
+    }else if([otherCards count] > 1){
+        BOOL match = YES, rankMatchAll = YES, suitMatchAll = YES;
+        
+        //Are they matching?
+        for(PlayingCard* card in otherCards){
+            NSLog(@"Made it in here" );
+            BOOL rankMatch = YES, suitMatch = YES;
+            if(self.rank != card.rank) rankMatch = NO;
+            if(![self.suit isEqualToString:card.suit]) suitMatch = NO;
+            rankMatchAll = rankMatchAll && rankMatch;
+            suitMatchAll = suitMatchAll && suitMatch;
+            if(!(rankMatch || suitMatch)){
+                match = NO;
+                break;
+            }
+        }
+        
+        //If matching -> calc matching score
+        if(match){
+            if(rankMatchAll) score = 4 * [otherCards count];
+            else if(suitMatchAll) score = 1 * [otherCards count];
+        }
+    }
+    
+    return score;
+}
+
 //Contents function inheirited from parent class
 -(NSString*) contents{
     NSArray *rankStrings = [PlayingCard rankStrings];

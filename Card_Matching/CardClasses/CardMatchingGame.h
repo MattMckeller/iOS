@@ -12,11 +12,13 @@
 @interface CardMatchingGame : NSObject
 
 //Designated Initializer
--(instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck*) deck;
+-(instancetype)initWithCardCount:(NSUInteger)count usingDeck:(Deck*) deck withAmountToMatch:(NSUInteger)amount;
 
 -(void)chooseCardAtIndex:(NSUInteger) index;
 -(Card*)cardAtIndex:(NSUInteger) index;
 
 //Read only as the user is not suppose to be able to change this
 @property(nonatomic, readonly) NSInteger score;
+@property(nonatomic, readwrite) NSUInteger amountToMatch;
+@property(nonatomic, strong) NSMutableArray *history;
 @end
